@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "IjuAKhr06N/DgDXmCn+6iTLbsT/OQnZEbLKSl0fefAPh404m4rLBPoGT2skzaVzAp/1gr8zqOIukYqBQy3DGrA==",
+  "success": true,
+  "projectFilePath": "C:\\ITU\\S5\\Archilog\\Pharmacie\\Dokotera\\Dokotera.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\joss elito\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\joss elito\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\joss elito\\.nuget\\packages\\npgsql\\8.0.1\\npgsql.8.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

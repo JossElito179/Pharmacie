@@ -1,0 +1,38 @@
+@{
+    ViewData["Title"] = "Maladies";
+}
+
+<div class="text-center">
+    <h2 class="display-4">Les maladies sont</h2>
+        @foreach (var maladie in Model.Maladies)
+        {
+            <p><label for="maladie">@maladie.Nom</label></p>
+        }
+
+        <table border=1>
+            <thead>
+            <tr>
+                <th>Nom medicament</th>
+                <th>Prix total</th>
+                <th>Etat</th>
+                <th>Quantite</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach(var symptome in Model.Allsymptome){
+                    double montant =@symptome.Prix_etat_vrai.Prixtotal;
+                    string montantFormate = montant.ToString("N2"); 
+                    double etat =@symptome.Prix_etat_vrai.Etat;
+                    string etatFormate = etat.ToString("N2"); 
+                    string Quantite=symptome.Prix_etat_vrai.Quantite.ToString("N2");
+                <tr>
+                    <td>@symptome.Prix_etat_vrai.nom_medoc</td>
+                    <td>@montantFormate</td>
+                    <td>@etatFormate</td>
+                    <td>@Quantite</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+</div>
