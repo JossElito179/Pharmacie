@@ -69,6 +69,14 @@ CREATE TABLE PatientSymptome(
    FOREIGN KEY(Id_Patient) REFERENCES Patient(Id_Patient)
 );
 
+CREATE TABLE ContreIndication(
+   Id_ContreIndication SERIAL PRIMARY KEY,
+   Id_SymptomeSource int not null,
+   Id_SymptomeCible int not null,
+   FOREIGN KEY (Id_SymptomeSource) REFERENCES Symptome (Id_Symptome),
+   FOREIGN KEY (Id_SymptomeCible) REFERENCES Symptome (Id_Symptome) 
+);
+
 INSERT INTO Status (nom) VALUES ('adulte'), ('enfant');
 
 INSERT INTO Patient (nom,Id_Status) VALUES ('Patient1',1), ('Patient2',1), ('Patient3',2);
@@ -86,10 +94,10 @@ INSERT INTO MaladieSymptome (etat_min, etat_max, Id_Maladie, Id_Symptome,Id_Stat
 INSERT INTO Medicaments (nom, prix) VALUES ('Medicament1', 10.0), ('Medicament2', 20.0), ('Medicament3', 30.0);
 
 INSERT INTO MedicamentSymptome (etat_symptome, quantite_medoc, Id_Medicaments, Id_Symptome) VALUES 
-    (1, 5.0, 1, 1),
-    (3.5, 2.0, 2, 2),
-    (2.0, 1.0, 3, 2),
-    (2.0, 10.0, 3, 3);
+    (1, 1.0, 1, 1),
+    (3, 1.0, 2, 2),
+    (2, 1.0, 3, 2),
+    (2, 1.0, 3, 3);
 
 INSERT INTO PatientSymptome (Id_Symptome, Id_Patient, etat) VALUES 
     (1, 1, 5),
@@ -97,6 +105,10 @@ INSERT INTO PatientSymptome (Id_Symptome, Id_Patient, etat) VALUES
     (3, 2, 2),
     (1, 3, 3),
     (2, 3, 5);
+
+INSERT INTO ContreIndication VALUES 
+    (default,1,2),
+    (default,2,3);
 
 CREATE or replace VIEW SymptomeMaladie as select 
    etat_max,etat_min,MaladieSymptome.Id_Symptome , Maladie.nom,

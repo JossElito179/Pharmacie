@@ -196,11 +196,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\ITU\\S5\\Archilog\\Pharmacie\\Dokotera\\Dokotera.csproj",
+      "projectUniqueName": "c:\\ITU\\S5\\Pharmacie\\Dokotera\\Dokotera.csproj",
       "projectName": "Dokotera",
-      "projectPath": "C:\\ITU\\S5\\Archilog\\Pharmacie\\Dokotera\\Dokotera.csproj",
+      "projectPath": "c:\\ITU\\S5\\Pharmacie\\Dokotera\\Dokotera.csproj",
       "packagesPath": "C:\\Users\\joss elito\\.nuget\\packages\\",
-      "outputPath": "C:\\ITU\\S5\\Archilog\\Pharmacie\\Dokotera\\obj\\",
+      "outputPath": "c:\\ITU\\S5\\Pharmacie\\Dokotera\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\joss elito\\AppData\\Roaming\\NuGet\\NuGet.Config"

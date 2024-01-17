@@ -2,24 +2,28 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<div class="text-center index">
     <h2 class="display-4">Maladie de ...</h2>
 
+    <center>
+    <div class="container-main">
     <form asp-controller="Home" asp-action="Traitement" method="post">
-    <p><label for="">Nom</label>
-    <select name="patient" id="">
+    <label for="">Nom</label>
+    <p><select name="patient" id="">
         @foreach (var patient in Model)
         {
             <option value="@patient.Id_Patient">@patient.Nom</option>
         }
     </select>
     </p>
-    <p><label for="">Priorite</label>
-    <select name="priorite" id="">
+    <label for="">Priorite</label>
+    <p><select name="priorite" id="">
         <option value="Prix">Prix</option>
         <option value="Efficacite">Efficacite</option>
     </select>
     </p>
     <p><input type="submit" value="Valider"></p>
     </form>
+    </div>
+    </center>
 </div>

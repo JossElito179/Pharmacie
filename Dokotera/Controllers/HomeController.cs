@@ -33,7 +33,7 @@ public class HomeController : Controller
         BaseConnection connex=new();
         Patient patient1=Patient.FindById(connex, patient);
         patient1.GetMaladies(connex);
-        patient1.GetAllMedoc(connex,priorite);
+        patient1.GetAllNecessary(connex,priorite);
         return View("AllSick",patient1);
     }
 

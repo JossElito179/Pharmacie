@@ -8,8 +8,8 @@
         {
             <p><label for="maladie">@maladie.Nom</label></p>
         }
-
-        <table border=1>
+        <center>
+        <table>
             <thead>
             <tr>
                 <th>Nom medicament</th>
@@ -32,7 +32,21 @@
                     <td>@Quantite</td>
                 </tr>
             }
+            @foreach (var contre in Model.Allcontre){
+                    double montant =contre.Prix_etat_vrai.Prixtotal;
+                    string montantFormate = montant.ToString("N2"); 
+                    double etat =contre.Prix_etat_vrai.Etat;
+                    string etatFormate = etat.ToString("N2"); 
+                    string Quantite=contre.Prix_etat_vrai.Quantite.ToString("N2");                
+                <tr>
+                    <td>@contre.Prix_etat_vrai.nom_medoc</td>
+                    <td>@montantFormate</td>
+                    <td>@etatFormate</td>
+                    <td>@Quantite</td>
+                </tr>    
+            }
             </tbody>
         </table>
+        </center>
 
 </div>

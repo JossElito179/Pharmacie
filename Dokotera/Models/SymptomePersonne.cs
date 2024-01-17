@@ -30,14 +30,14 @@ namespace Models
             {
                 foreach (var item in Allprix)
                 {
-                    if (Prix_etat_vrai.Quantite/Prix_etat_vrai.Prixtotal>item.Quantite/item.Prixtotal)
+                    if (Prix_etat_vrai.Etat/Prix_etat_vrai.Prixtotal<item.Etat/item.Prixtotal)
                     {
                         Prix_etat_vrai=item;
                     }
                 }   
             }
         }    
-    
+
         public List<MedicamentSymptome> GetMedicamentBy(BaseConnection basecon){
             List<MedicamentSymptome> allMedc=new();
             using (var connection = new NpgsqlConnection(basecon._connectionString))
@@ -67,5 +67,29 @@ namespace Models
             }
             return allMedc;
         }
+
+public int GetContreIndication(BaseConnection connex)
+{
+    int contre = 0;
+
+    using (var connection = new NpgsqlConnection(connex._connectionString))
+    {
+        connection.Open();
+
+        using var cmd = new NpgsqlCommand("SELECT id_symptomecible FROM ContreIndication WHERE id_symptomesource = @para1", connection);
+        cmd.Parameters.AddWithValue("para1", this.Id_Symptome);
+
+        using var reader = cmd.ExecuteReader();
+
+        while (reader.Read())
+        {
+            contre = reader.GetInt32(0);
+        }
+
+        connection.Close();
+    }
+
+    return contre;
+}
     }
 }

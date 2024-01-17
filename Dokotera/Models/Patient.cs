@@ -11,6 +11,8 @@ namespace Models
         public int Id_Status{ get; set;}
         public List<SymptomePersonne> Allsymptome { get; set; }= new List<SymptomePersonne>();
         public List<Maladie> Maladies{get;set;}=new List<Maladie>();
+        public List<SymptomePersonne> Allcontre { get; set; }= new List<SymptomePersonne>();
+        public List<SymptomePersonne> AllSymptomeMedoc{ get; set; }= new List<SymptomePersonne>();
         public Patient(int id,string nom,int Id_Status){
             Id_Patient=id;
             Nom=nom;
@@ -122,6 +124,44 @@ namespace Models
                 }
                 symptome.GetPEVrai(priorite);
             }
+        }
+
+        public void SetAllSymptContre(BaseConnection connex){
+            foreach (var item in Allsymptome)
+            {
+#pragma warning disable CS8602 
+                if (item.Prix_etat_vrai.Etat>item.Etat)
+                {
+                    Allcontre.Add(new SymptomePersonne(item.GetContreIndication(connex),Int32.Parse(item.Prix_etat_vrai.Etat-item.Etat+"")));
+                }
+#pragma warning restore CS8602 
+            }
+        }
+
+        public void GetAllMedoContre(BaseConnection basecon,string priorite){
+            foreach (var symptome in Allcontre)
+            {
+                List<MedicamentSymptome> medicaments=symptome.GetMedicamentBy(basecon);
+                foreach (var medoc in medicaments)
+                {
+                    double etat_provisoir=0;
+                    while (etat_provisoir<symptome.Etat)
+                    {
+                        etat_provisoir+=medoc.Etat_symptome/medoc.Quantite_medoc;
+                    }
+                    double Quantite=(medoc.Quantite_medoc/medoc.Etat_symptome)*etat_provisoir;
+                    double Prixtotal=Quantite*medoc.prixu;
+                    Console.WriteLine(medoc.prixu+" , "+ medoc.Nom_medoc);
+        symptome.Allprix.Add(new PropositionPrix(symptome.Id_Symptome,medoc.Nom_medoc,Prixtotal,etat_provisoir,Quantite));
+                }
+                symptome.GetPEVrai(priorite);
+            }
+        }
+
+        public void GetAllNecessary(BaseConnection connex,string priorite){
+            GetAllMedoc(connex, priorite);
+            SetAllSymptContre(connex);
+            GetAllMedoContre(connex, priorite);
         }
 
         }
